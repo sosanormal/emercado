@@ -1,26 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-  
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+
+  <!--DESAFIATE- ID CLIENTE -->
+  <meta name="google-signin-client_id" content="AIzaSyBpHGcWAI1UPnT2LYI_I_cswSf4JDEsV34.apps.googleusercontent.com">
+  <!--DESAFIATE- Script de PLATAFORMA DE GOOGLE -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  
+
   <style>
     body {
       background-color: rgb(248, 249, 250);
     }
+    .text-center{
+      margin-top: 80px;
+     
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 400px;
+    }
+    img{
+      display: block;
+      width: 90%;
+      margin: auto;
+    }
+    h4{
+      font-weight: bold;
+    }
+    input{
+      max-width: 300px;
+      margin: auto;
+    }
+
   </style>
 </head>
 
 <body>
   <main class="mt-5">
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <!--LOG IN FORM -->
+      <div class="text-center">
+        <img alt="logo emercado" src="./img/login.png">
+        <h4>Inicio de sesión</h4>
+        <label>Email</label>
+        <input id="email" class="form-control" name="email" placeholder="Email" type="email" required>
+        </br>
+        <label>Contraseña</label>
+        <input id="pass" class="form-control" name="password" placeholder="Contraseña" type="password" required>
+        </br>
+        <button id="ok" class="btn btn-primary" type="submit">Ingresar</button>
+        <!--DESAFIATE- BOTON GOOGLE -->
+        <div id="signin" class="g-signin2" data-onsuccess="onSignIn"></div>
+<!--
+        <script>
+          function renderButton(){
+            gapi.signin2.render('my-signin2' , => {
+              'scope' : 'profile email',
+              'width' : 240,
+              'height' : 50,
+              'longtitle' : true,
+              'theme' : 'dark',
+              'onsuccess' : onSuccess,
+              'onfailure: onFailure'
+            });
+          }
+        </script>-->
+
+        
+
+
       </div>
     </div>
   </main>
@@ -34,7 +88,7 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
-  <script src="js/login.js"></script>
+  <script src="./js/login.js"></script>
 </body>
 
 </html>
