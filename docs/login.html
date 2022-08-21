@@ -61,8 +61,11 @@
 
         <script>
           function onSignIn(googleUser){
-            let profile = googleUser
-              console.log('user is ' + JSON.stringify(googleUser.getBasicProfile))
+            let profile = googleUser.getBasicProfile();
+              console.log('ID:' +  profile.getId()); //no se aconseja pasar este dato por aca, sino usar un TOKEN
+              console.log('nombre:' +  profile.getName());
+              console.log('Image URL:' +  profile.getImageUrl());
+              console.log('Email:' +  profile.getEmail());
             }
         </script>
 
