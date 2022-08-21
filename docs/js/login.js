@@ -11,13 +11,3 @@ if (email && password){
 })
 
 //DESAFIATE
-
-/*
-gapi.load('auth2', function(){
-  gapi.auth2.init();
-});
-
-document.getElementById("signin").addEventListener("click", function() {
-
-})
-*/
