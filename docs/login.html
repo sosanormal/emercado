@@ -64,16 +64,18 @@
 
         <div class="g_id_signin" data-type="standard"></div>
 
-        <!--
-        <div id="signin" class="g-signin2" data-onsuccess="onSignIn"></div>-->
-
         <script>
-          function handleCredentialResponse(googleUser){
-            let profile = googleUser.getBasicProfile();
-              // console.log('ID:' +  profile.getId()); //no se aconseja pasar este dato por aca, sino usar un TOKEN
-              console.log('nombre:' +  profile.getName());
-              console.log('Image URL:' +  profile.getImageUrl());
-              console.log('Email:' +  profile.getEmail());
+          function handleCredentialResponse(response){
+              // decodeJwtResponse() is a custom function defined by you
+              // to decode the credential response.
+              const responsePayload = decodeJwtResponse(response.credential);
+
+              console.log("ID: " + responsePayload.sub);
+              console.log('Full Name: ' + responsePayload.name);
+              console.log('Given Name: ' + responsePayload.given_name);
+              console.log('Family Name: ' + responsePayload.family_name);
+              console.log("Image URL: " + responsePayload.picture);
+              console.log("Email: " + responsePayload.email);
             }
         </script>
 
