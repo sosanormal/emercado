@@ -38,9 +38,32 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+
+      <div id="productInfo" style="margin-top:25px; background-color:#eeeeff"></div>
+
+      <div id="commentSection" style="margin-top:25px; padding:20px; background-color:#eeeeff"><h2>Comentarios</h2></div>
+
+      <div id="commentForm" style="margin-top:25px; padding:20px; background-color:#eeeeff"><h2>Comentar</h2>
+
+        
+        <label>Calificanos:</label>
+        <select id="rate" name="rating">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <br>
+        
+        <label>Queremos saber tu opinión:</label>
+        <textarea class="form-control" id="myComment" name="comment" placeholder="Escribe tu comentario aquí." rows="4" cols="20" required></textarea>   
+        <br>
+        
+        <button onclick="addComment()" class="btn btn-primary">Enviar</button>
+        
       </div>
+
     </div>
   </main>
   <footer class="text-muted">

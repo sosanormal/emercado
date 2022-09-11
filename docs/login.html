@@ -57,13 +57,37 @@
         <button id="ok" class="btn btn-primary" type="submit">Ingresar</button>
       </br></br>
 
-        <!--DESAFIATE- BOTON GOOGLE -->
+        <!--DESAFIATE- BOTON GOOGLE 
         <div id="g_id_onload"
          data-client_id="126921994551-p4huehaodcnik7r336o25qtbrt5te7tq.apps.googleusercontent.com"
          data-callback="handleCredentialResponse">
         </div>
 
-        <div class="g_id_signin" data-type="standard"></div>
+        <div class="g_id_signin" data-type="standard"></div>-->
+
+
+      <!--<script src="https://accounts.google.com/gsi/client" async defer></script>
+      <div id="g_id_onload"
+        data-client_id="126921994551-p4huehaodcnik7r336o25qtbrt5te7tq.apps.googleusercontent.com"
+        data-callback="handleCredentialResponse">
+      </div>
+      <div class="g_id_signin" data-type="standard"></div>-->
+
+      <div id="g_id_onload"
+          data-client_id="126921994551-p4huehaodcnik7r336o25qtbrt5te7tq.apps.googleusercontent.com"
+          data-context="use"
+          data-ux_mode="popup"
+          data-callback="handleCredentialResponse">
+      </div>
+
+      <div class="g_id_signin"
+          data-type="standard"
+          data-shape="rectangular"
+          data-theme="outline"
+          data-text="$ {button.text}"
+          data-size="large"
+          data-logo_alignment="left">
+      </div>
 
         
 

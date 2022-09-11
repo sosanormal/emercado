@@ -68,12 +68,14 @@ let keyWord = "";
       ArrayProducts = ProductList;
     })
 
+
     //Show List
     function showList(array){
         array.forEach(element => {
           if (((min == 0) || (element.cost)>= min) && ((max == 0) || (element.cost)<= max) && ((keyWord == "") || element.name.toLowerCase().includes(keyWord.toLowerCase()))){
             var elementHTML = 
-            `<div class="row">
+            //onclick listener on the div that calls the set ID function
+            `<div class="row" onclick="setProdID(${element.id})">
                     <div class="col-3">
                         <img class="img-thumbnail" src="${element.image}"> 
                     </div>
@@ -92,8 +94,6 @@ let keyWord = "";
           }
         }) 
     }
-
-
     
 /* --------------------------------------------  */
 /* --------------- ORDER LISTS  ---------------  */
@@ -110,4 +110,14 @@ let keyWord = "";
       }
       clearList();
       showList(ArrayProducts);
+    }
+
+/* ----------------------------------------  */
+/* --------------- PRODUCTS  --------------  */
+/* ----------------------------------------  */
+
+    //This function sets the product ID in the local storage
+    function setProdID(id) {
+      localStorage.setItem("prodID", id);
+      window.location = "product-info.html";
     }
