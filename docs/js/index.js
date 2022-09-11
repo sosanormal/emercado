@@ -26,7 +26,7 @@ function logOut() {
         logInButton.innerHTML += 
   
         `<div class="dropdown">
-        <li class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><img style="width: 20px;" src='${localStorage.getItem("profilePic")}'>
         ${localStorage.getItem("user")}
         </li>
         <ul class="dropdown-menu">
@@ -36,7 +36,6 @@ function logOut() {
       </div>`
   
     } else{
-        //logInButton.innerHTML += `<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>`
         window.open("login.html", "_self")
     }
   }
