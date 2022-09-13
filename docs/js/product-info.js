@@ -1,3 +1,7 @@
+/*-----------------------------------------
+ ----------- Reusable functions ------------
+ -----------------------------------------*/
+
 // Global variables
 let product = {};
 
@@ -6,6 +10,33 @@ function changeIMG(k){
   console.log(product.images[k])
   document.getElementById("shownIMG").src = product.images[k]
 }
+
+// Show alert sucess function
+function showAlertSucess() {
+  document.getElementById("alert-success").style.display = "block";
+
+  setTimeout(function() { 
+    document.getElementById("alert-success").style.display = "none"; 
+    }, 5000);
+}
+
+//Add Stars FUNCTION
+function addStars(score){
+  let starCount= 0;
+  let starsHTML = "";
+
+  for(j=0; j<5; j++){
+    if(starCount<score){ starsHTML += `<span class="fa fa-star" style="color: orange;"></span>`}
+    else{ starsHTML += `<span class="fa fa-star"></span>`}
+    starCount ++;
+  }
+  return starsHTML;
+}
+
+
+/*--------------------------------------------
+ ----------- LOAD WEBSITE CONTENT ------------
+ -------------------------------------------*/
 
 
 //Website Load
@@ -27,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () =>{
   })
 
 });
-
 
 
 // Product Html Loading Function
@@ -68,65 +98,60 @@ function showProductInfo(product){
 }
 
 
+/*--------------------------------------------
+ ------------ PRODUCT COMMENTS ---------------
+ -------------------------------------------*/
+
+
+
+
+
 // Loading comments
 function loadComments(comments){
 
   var elementHTML = "";
 
   for (i=0; i<comments.length; i++){
-    elementHTML += `
-    <div id="${comments[i].user}_${comments[i].dateTime}" class="m-3 p-3" style="border: 1px solid #ddd; background-color:lavender;">
-
-    <p><strong>${comments[i].user}</strong> | <span style="color:gray;">${comments[i].dateTime}</span> | <span id="${comments[i].user}_score"></span></p>
-      <p>${comments[i].description}</p>
-
-    </div>
-    `
+    elementHTML += 
+    `<div class="m-3 p-3" style="border: 1px solid #ddd; background-color:lavender;">
+        <p><strong>${comments[i].user}</strong> | <span style="color:gray;">${comments[i].dateTime}</span> | <span>${addStars(comments[i].score)}</span></p>
+        <p>${comments[i].description}</p>
+    </div>`
   }
   
   //Apply HTML changes
   document.getElementById("commentSection").innerHTML += elementHTML;
-
-  //Add the stars
-    for (i=0; i<comments.length; i++){
-      let starCount= 0;
-      for(j=0; j<5; j++){
-        if(starCount<comments[i].score){
-          document.getElementById(comments[i].user + "_score").innerHTML += `<span class="fa fa-star" style="color: orange;"></span>`;
-        }else{document.getElementById(comments[i].user + "_score").innerHTML += `<span class="fa fa-star"></span>`}
-        starCount ++;
-      }
-    }
 }
 
 
-//Add new comments
+
+/*--------------------------------------------
+ --------------- MY COMMENTS -----------------
+ -------------------------------------------*/
+
+//NEW comments
 function addComment(){
+
+  //set variables
   let comment = document.getElementById("myComment").value;
   let rate = document.getElementById("rate").value;
+  let user = localStorage.getItem("user")
 
-  
+  //Set comment date
   const myDate= new Date();
-  const dateString= myDate.getFullYear() +'-'+ myDate.getMonth()+'-'+ myDate.getDay();
-  let myCommentId = localStorage.getItem("user") + "_" + dateString
+  const dateString= myDate.toLocaleString();
 
+  //Set comment HTML
   document.getElementById("commentSection").innerHTML +=
   `
-    <div id="${myCommentId}" class="m-3 p-3" style="border: 1px solid #ddd; background-color:lavender;">
-    <p><strong>  ${localStorage.getItem("user")}</strong> | <span style="color:gray;">${dateString}</span> | <span id="${localStorage.getItem("user")}_score"></span></p>
+    <div class="m-3 p-3" style="border: 1px solid #ddd; background-color:lavender;">
+    <p><strong>  ${user}</strong> | <span style="color:gray;">${dateString}</span> | <span>${addStars(rate)}</span></p>
       <p>${comment}</p>
     </div>
     `
 
-    //Add STARS (provisorio)
+  //Add HTML comment
+  document.getElementById("myComment").value = "";
 
-      let starCount= 0;
-      for(j=0; j<5; j++){
-        if(starCount<rate){
-          document.getElementById(localStorage.getItem("user") + "_score").innerHTML += `<span class="fa fa-star" style="color: orange;"></span>`;
-        }else{document.getElementById(localStorage.getItem("user") + "_score").innerHTML += `<span class="fa fa-star"></span>`}
-        starCount ++;
-      }
-
-    document.getElementById("commentForm").innerHTML = `<strong style="color:#3399aa">¡Gracias por su comentario!</strong>`
+  showAlertSucess() 
 }

@@ -1,0 +1,20 @@
+URI:
+https://developers.google.com/oauthplayground
+
+
+
+Id client:
+126921994551-p4huehaodcnik7r336o25qtbrt5te7tq.apps.googleusercontent.com
+
+Client secret:
+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
+
+
+authorization code for tokens:
+4/0AdQt8qj25Svu9GEDtaO-W6KQSlR1nrn8cXj3FxSw31bt3nBIQu0igUP-49VKbr5fpXSJsw
+
+Token:
+1//043xqjGTFrSVoCgYIARAAGAQSNwF-L9Ir_7ymSTtnvWKjTNLPqc-8Zf_iFcXMNaEwNwRDk4RNeDyOyitp-sbnZGDDJTsXACghzyw
+
+Access Token:
+ya29.a0AVA9y1tBnuG_kgcr1lyiEsLA25bciFa-o_SZjPbieqpGHmIKCIP9e5XFRH6j5MezCzjIYFFcEBEy7hHCuV7yUUT1O008IDwBmb8GU278qGK7aOf2doEhgg9Y5rnOii87y7GeQgOjWw40UT4ns_O5q8cqF2zVaCgYKATASARASFQE65dr8h1C1myrerILuu3fhqpq-fg0163

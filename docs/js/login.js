@@ -1,20 +1,38 @@
-document.getElementById("ok").addEventListener("click", function() {
+//Alert error
+function showAlertError() {
+  document.getElementById("alert-danger").style.display = "block";
 
+  setTimeout(function() { 
+    document.getElementById("alert-danger").style.display = "none"; 
+    }, 5000);
+}
+
+function hideAlertError()  {
+  document.getElementById("alert-danger").style.display = "none";
+}
+
+
+//Mail LOG IN Check
+
+document.getElementById("ok").addEventListener("click", function() {
   //CATCH mail and pass
   const email= document.getElementById("email").value;
   const password= document.getElementById("pass").value;
 
   //Checks user and pass
-  if (email && password){
+  if (email && password.length >=6 ){
         //SAVES user in Local Storage > then loads index 
-        localStorage.setItem("user", email);
+        localStorage.setItem("user", email.substring(0,email.indexOf('@')));
         localStorage.setItem("profilePic", 'https://dfge.de/wp-content/uploads/blank-profile-picture-973460_640.png');
         window.location = "index.html";
   }else{
-    location.reload();
+    //location.reload();
+    showAlertError() 
   }
 })
 
+
+//FOR GOOGLE LOG IN
 
 function handleCredentialResponse(response) {
   const responsePayload = decodeJwtResponse(response.credential);
@@ -26,7 +44,7 @@ function handleCredentialResponse(response) {
   console.log("Image URL: " + responsePayload.picture);
   console.log("Email: " + responsePayload.email);
 
-  localStorage.setItem("user", responsePayload.email);
+  localStorage.setItem("user", responsePayload.email.substring(0,responsePayload.email.indexOf('@')));
   localStorage.setItem("profilePic", responsePayload.picture);
   window.open("index.html", "_self");
 }
