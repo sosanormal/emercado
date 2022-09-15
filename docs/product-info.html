@@ -10,6 +10,45 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <style>
+
+    .productSections{
+      margin-top:25px; 
+      padding:30px; 
+      background-color:#eeeeff
+    }
+
+    .shownIMG{
+      width:100%; 
+      border-radius: 20px;
+    }
+    .price{
+      color:green
+    }
+    .product_info p{
+        margin:7px
+    }
+    .img_gallery{
+      width:100%; 
+      padding:1px; 
+      border: 1px solid #ddd; 
+      border-radius: 10px;
+    }
+    img:hover{
+      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    }
+    .comments{
+      border: 1px solid #ddd; 
+      background-color:lavender;
+      margin: 15px;
+      padding: 15px;
+    }
+    .date{
+      color:gray;
+    }
+    
+
+  </style>
 </head>
 
 <body>
@@ -39,30 +78,35 @@
   <main>
     <div class="container">
 
-      <div id="productInfo" style="margin-top:25px; background-color:#eeeeff"></div>
+          <!-- Product Info-->
 
-      <div id="commentSection" style="margin-top:25px; padding:20px; background-color:#eeeeff"><h2>Comentarios</h2></div>
+          <div id="productInfo" class="productSections"></div>
 
-      <div id="commentForm" style="margin-top:25px; padding:20px; background-color:#eeeeff"><h2>Comentar</h2>
+          <!-- Comment Section-->
+          <div id="commentSection" class="productSections"><h2>Comentarios</h2></div>
 
-        
-        <label>Calificanos:</label>
-        <select id="rate" name="rating">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-        <br>
-        
-        <label>Queremos saber tu opinión:</label>
-        <textarea class="form-control" id="myComment" name="comment" placeholder="Escribe tu comentario aquí." rows="4" cols="20" required></textarea>   
-        <br>
-        
-        <button onclick="addComment()" class="btn btn-primary">Enviar</button>
-        
-      </div>
+          <!-- Comment form-->
+          <div id="commentForm" class="productSections"><h2>Comentar</h2>
+
+              <label>Calificanos:</label>
+              <select id="rate" name="rating">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+              </select>
+              <br>
+              <label>Queremos saber tu opinión:</label>
+              <textarea class="form-control" id="myComment" name="comment" placeholder="Escribe tu comentario aquí." rows="4" cols="20" required></textarea>   
+              <br>
+              <button onclick="addComment()" class="btn btn-primary">Enviar</button>
+          </div>
+
+          <!-- ALERT SUCCESS-->   
+          <div class="alert alert-success position-fixed" style="display:none;" role="alert" id="alert-success">
+            <p>¡Gracias por su comentario!</p>
+          </div>          
 
     </div>
   </main>
@@ -83,10 +127,6 @@
       <div></div>
       <div></div>
     </div>
-  </div>
-
-  <div class="alert alert-success alert-dismissible" style="display:none" role="alert" id="alert-success">
-    <p>¡Gracias por su comentario!</p>
   </div>
 
   <script src="js/bootstrap.bundle.min.js"></script>

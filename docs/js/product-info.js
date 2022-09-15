@@ -1,5 +1,5 @@
 /*-----------------------------------------
- ----------- Reusable functions ------------
+ ----------- Functions to call ------------
  -----------------------------------------*/
 
 // Global variables
@@ -10,6 +10,15 @@ function changeIMG(k){
   console.log(product.images[k])
   document.getElementById("shownIMG").src = product.images[k]
 }
+
+//Add small gallery of images with function
+  function addImgGallery(){
+    var galleryHTML = ""
+    for (let k=0; k< product.images.length;k++){
+      galleryHTML += `<a href="#"><img onclick="changeIMG(${k})" class="img_gallery" src="${product.images[k]}"></a>`
+    }
+    return galleryHTML;
+  }
 
 // Show alert sucess function
 function showAlertSucess() {
@@ -56,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () =>{
   .then(data => {
     loadComments(data);
   })
-
 });
 
 
@@ -66,15 +74,15 @@ function showProductInfo(product){
   //Design HTML
   var elementHTML = `
       <div class= "row" style="padding-top:10px;">
-          <div id="imgGallery" class="col-1 m-1"> 
+          <div id="imgGallery" class="col-1 m-1"> ${addImgGallery()}
           </div>
             <div class="col-6"> 
-              <a href="${product.images[0]}" target="_blank"><img id="shownIMG" style="width:100%; border-radius: 20px;" src="${product.images[0]}"></a>
+              <a href="${product.images[0]}" target="_blank"><img id="shownIMG" class="shownIMG" src="${product.images[0]}"></a>
             </div>
 
-            <div class= "col-4 m-1"> 
+            <div class= "product_info col-4"> 
               <h1>${product.name}</h1>
-              <h2 style="color:green">${product.cost} ${product.currency}</h2>
+              <h2 class="price">${product.cost} ${product.currency}</h2>
               <br>
               <p><strong>Categoría: </strong>${product.category}</p>
               <p><strong>Descripción: </strong>${product.description}</p>
@@ -85,24 +93,12 @@ function showProductInfo(product){
   //Apply HTML changes
     document.getElementById("productInfo").innerHTML += elementHTML;
 
-  //Add small gallery of images with function
-    for (let k=0; k< product.images.length;k++){
-      document.getElementById("imgGallery").innerHTML += `<a href="#"><img onclick="changeIMG(${k})" style="width:100%; padding:1px; border: 1px solid #ddd; border-radius: 10px;" src="${product.images[k]}"></a>
-      <style>
-        img:hover {
-          box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-        }
-      </style>`
-    }
-
 }
 
 
 /*--------------------------------------------
  ------------ PRODUCT COMMENTS ---------------
  -------------------------------------------*/
-
-
 
 
 
@@ -113,8 +109,8 @@ function loadComments(comments){
 
   for (i=0; i<comments.length; i++){
     elementHTML += 
-    `<div class="m-3 p-3" style="border: 1px solid #ddd; background-color:lavender;">
-        <p><strong>${comments[i].user}</strong> | <span style="color:gray;">${comments[i].dateTime}</span> | <span>${addStars(comments[i].score)}</span></p>
+    `<div class="comments">
+        <p><strong>${comments[i].user}</strong><span class="date"> | ${comments[i].dateTime} | </span><span>${addStars(comments[i].score)}</span></p>
         <p>${comments[i].description}</p>
     </div>`
   }
@@ -122,7 +118,6 @@ function loadComments(comments){
   //Apply HTML changes
   document.getElementById("commentSection").innerHTML += elementHTML;
 }
-
 
 
 /*--------------------------------------------
@@ -144,8 +139,8 @@ function addComment(){
   //Set comment HTML
   document.getElementById("commentSection").innerHTML +=
   `
-    <div class="m-3 p-3" style="border: 1px solid #ddd; background-color:lavender;">
-    <p><strong>  ${user}</strong> | <span style="color:gray;">${dateString}</span> | <span>${addStars(rate)}</span></p>
+    <div class="comments">
+      <p><strong>  ${user}</strong> | <span style="color:gray;">${dateString}</span> | <span>${addStars(rate)}</span></p>
       <p>${comment}</p>
     </div>
     `
