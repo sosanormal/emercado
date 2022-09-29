@@ -14,11 +14,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-function logOut() {
-    localStorage.clear(); /* CLEARS ALL LOCAL STORAGE */
-    location.reload();
-  }
-  
+//Checks Login and applies it
   function loadLogIn(){
     let logInButton = document.getElementById("navBarMenu");
   
@@ -30,8 +26,9 @@ function logOut() {
         ${localStorage.getItem("user")}
         </li>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item " href="my-profile.html">${localStorage.getItem("user")}</a></li>
-          <li><a class="dropdown-item " id="logOut" href="">LogOut</a></li>
+          <li><a class="dropdown-item " href="cart.html">Mi carrito</a></li>
+          <li><a class="dropdown-item " href="my-profile.html">Mi perfil</a></li>
+          <li><a class="dropdown-item " id="logOut" href="">Cerrar sesión</a></li>
         </ul>
       </div>`
   
@@ -40,8 +37,18 @@ function logOut() {
     }
   }
   
-  loadLogIn()
+  loadLogIn();
 
+
+  
+//Function for LOG OUT
+
+function logOut() {
+  localStorage.clear(); /* CLEARS ALL LOCAL STORAGE */
+  location.reload();
+}
+
+//Control for LOG OUT 
 document.getElementById('logOut').addEventListener("click", function() {
-    logOut();
+  logOut();
 });

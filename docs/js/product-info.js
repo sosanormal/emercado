@@ -5,20 +5,45 @@
 // Global variables
 let product = {};
 
-//Function for changing images when clicking at gallery 
-function changeIMG(k){
-  console.log(product.images[k])
-  document.getElementById("shownIMG").src = product.images[k]
+//Change product ID
+function newProdID(id){
+  localStorage.setItem("prodID", id);
+  location.reload();
 }
 
-//Add small gallery of images with function
-  function addImgGallery(){
-    var galleryHTML = ""
-    for (let k=0; k< product.images.length;k++){
-      galleryHTML += `<a href="#"><img onclick="changeIMG(${k})" class="img_gallery" src="${product.images[k]}"></a>`
+//Add Slider indicators
+function addSlideInd(items){
+  var elementHTML = ""
+  for (i=0; i<items.length; i++){
+   if (i==0){
+      elementHTML += `<button type="button" data-bs-target="#carousel" data-bs-slide-to="${i}" class="active" aria-current="true" aria-label="Slide ${i}"></button>`
+    }else{
+      elementHTML += `<button type="button" data-bs-target="#carousel" data-bs-slide-to="${i}" aria-label="Slide ${i}"></button>`
     }
-    return galleryHTML;
-  }
+  }  
+  return elementHTML;
+}
+
+//Add Slider images
+function addSlideIMG(images){
+  var elementHTML = ""
+
+  for (i=0; i<images.length; i++){
+    if (i==0){
+      elementHTML +=
+      `<div class="carousel-item active">
+          <img class="sliderIMG" src="${images[i]}" class="d-block w-100" alt="...">
+      </div>`
+
+     }else{
+      elementHTML +=
+      `<div class="carousel-item">
+        <img class="sliderIMG" src="${images[i]}" class="d-block w-100" alt="...">
+      </div>`
+     }
+   }  
+return elementHTML;
+}
 
 // Show alert sucess function
 function showAlertSucess() {
@@ -57,6 +82,10 @@ document.addEventListener("DOMContentLoaded", () =>{
   .then(data => {
     product = data;
     showProductInfo(data);
+
+    loadRelatedProducts(data.relatedProducts);
+
+    //console.log(PRODUCT_INFO_URL + localStorage.getItem('prodID') + EXT_TYPE)
   })
 
   //Comment section FETCH
@@ -71,16 +100,25 @@ document.addEventListener("DOMContentLoaded", () =>{
 // Product Html Loading Function
 function showProductInfo(product){
 
+
   //Design HTML
   var elementHTML = `
-      <div class= "row" style="padding-top:10px;">
-          <div id="imgGallery" class="col-1 m-1"> ${addImgGallery()}
-          </div>
-            <div class="col-6"> 
-              <a href="${product.images[0]}" target="_blank"><img id="shownIMG" class="shownIMG" src="${product.images[0]}"></a>
+      <div style="padding-top:10px; display: inline-flex; flex-flow: row wrap; justify-content:space-evenly;">
+            
+            <div id="carousel" class="carousel slide" data-bs-ride="carousel">  
+                <div class="carousel-indicators">${addSlideInd(product.images)}</div>
+                <div class="carousel-inner">${addSlideIMG(product.images)}</div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
             </div>
 
-            <div class= "product_info col-4"> 
+            <div class= "product_info"> 
               <h1>${product.name}</h1>
               <h2 class="price">${product.cost} ${product.currency}</h2>
               <br>
@@ -93,10 +131,34 @@ function showProductInfo(product){
   //Apply HTML changes
     document.getElementById("productInfo").innerHTML += elementHTML;
 
-}
-
+}    
 
 /*--------------------------------------------
+ ------------ RELATED PRODUCTS ---------------
+ -------------------------------------------*/
+
+
+function loadRelatedProducts(relProd){
+  var elementHTML = "";
+
+  for (i=0; i<relProd.length; i++){
+    elementHTML += 
+        `<div class= "d-inline-flex p-2 border m-2" style="border-radius: 10px;">
+            <div style= "flex-direction: column; text-align: center;">
+                  <a onclick="newProdID(${relProd[i].id})" href="#">
+                    <img class="img_gallery" style="width:200px" src="${relProd[i].image}">
+                    <p>${relProd[i].name} </p>
+                  </a>
+                
+            </div>
+
+        </div>`
+  }
+
+  document.getElementById("relatedProducts").innerHTML += elementHTML;
+}
+
+/*--------------------------------------------  ; 
  ------------ PRODUCT COMMENTS ---------------
  -------------------------------------------*/
 
@@ -147,6 +209,7 @@ function addComment(){
 
   //Add HTML comment
   document.getElementById("myComment").value = "";
+  document.getElementById("rate").value = "1";
 
   showAlertSucess() 
 }
