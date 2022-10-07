@@ -188,3 +188,10 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.badge {
+  position: absolute;
+  border-radius: 45%;
+  background: teal;
+  color: white;
+}

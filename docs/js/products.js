@@ -111,13 +111,3 @@ let keyWord = "";
       clearList();
       showList(ArrayProducts);
     }
-
-/* ----------------------------------------  */
-/* --------------- PRODUCTS  --------------  */
-/* ----------------------------------------  */
-
-    //This function sets the product ID in the local storage
-    function setProdID(id) {
-      localStorage.setItem("prodID", id);
-      window.location = "product-info.html";
-    }

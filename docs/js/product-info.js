@@ -125,6 +125,8 @@ function showProductInfo(product){
               <p><strong>Categoría: </strong>${product.category}</p>
               <p><strong>Descripción: </strong>${product.description}</p>
               <p><strong>Vendidos:</strong> ${product.soldCount}</p>
+
+              <button onclick="addToCart()" class="btn btn-success">${cartIcon} Agregar al carrito</button>
             </div>
       </div>
     `
@@ -212,4 +214,52 @@ function addComment(){
   document.getElementById("rate").value = "1";
 
   showAlertSucess() 
+}
+
+
+
+
+
+/*-----------------------------------------
+ ----------- ADD TO CART FUNCTION ------------
+ -----------------------------------------*/
+
+ function addToCart(){
+
+  let alreadyInCart = false;
+
+  if(localStorage.getItem("myCart")){
+
+    alreadyInCart = false;
+
+    for (i=0;i<loadLocalStorageCart().length; i++){
+      if (loadLocalStorageCart()[i].id == product.id){
+        //tengo que ver como hacer para que en este caso, agregue 1 al 'count' del producto
+        alreadyInCart = true;
+        console.log("Already in cart!! wont add it");
+      }
+    }
+  }
+    else{
+      console.log("There is no cart, lets create it");
+      let productObject={id: product.id , name: product.name, unitCost: product.cost, count: 1 , currency: product.currency, image: product.images[0]};
+      cartList = []
+      cartList = cartList.concat(productObject);
+      localStorage.setItem('myCart', JSON.stringify(cartList));
+      alreadyInCart = true;
+
+    }
+
+    if (alreadyInCart==false){
+      console.log("The product is not in the cart, lets add it");
+
+      let productObject={id: product.id , name: product.name, unitCost: product.cost, count: 1 , currency: product.currency, image: product.images[0]};
+
+      cartList = loadLocalStorageCart();
+
+      cartList = cartList.concat(productObject);
+    
+      localStorage.setItem('myCart', JSON.stringify(cartList));
+    }
+
 }

@@ -9,6 +9,15 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <style>
+    @media (max-width: 1000px) {
+    .disableIfSmall{
+      visibility: hidden;
+      display: none;
+    }
+}
+  </style>
+
 </head>
 
 <body>
@@ -19,7 +28,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
+        <ul class="navbar-nav w-100 justify-content-between" id="navBarMenu">
           <li class="nav-item">
             <a class="nav-link" href="index.html">Inicio</a>
           </li>
@@ -37,9 +46,11 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+      <br><h2 class="text-center">Mi carrito</h2>
+      <br><h4 class="text-center">Articulos a comprar</h4><br>
+      <div id="listacompras"></div><br><br>
+      <div id="shippingControls"></div>
+
     </div>
   </main>
   <footer class="text-muted">
