@@ -103,9 +103,9 @@ function showProductInfo(product){
 
   //Design HTML
   var elementHTML = `
-      <div style="padding-top:10px; display: inline-flex; flex-flow: row wrap; justify-content:space-evenly;">
+      <div class="row">
             
-            <div id="carousel" class="carousel slide" data-bs-ride="carousel">  
+            <div id="carousel" class="carousel slide col-lg-7 col-md-12" data-bs-ride="carousel">  
                 <div class="carousel-indicators">${addSlideInd(product.images)}</div>
                 <div class="carousel-inner">${addSlideIMG(product.images)}</div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
@@ -118,7 +118,7 @@ function showProductInfo(product){
                 </button>
             </div>
 
-            <div class= "product_info"> 
+            <div class= "product_info col-lg-4 col-md-12"> 
               <h1>${product.name}</h1>
               <h2 class="price">${product.cost} ${product.currency}</h2>
               <br>

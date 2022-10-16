@@ -5,6 +5,14 @@
     let articulos =[];
 
 
+    //VACIAR CARRITO
+
+    function clearCart(){
+      localStorage.setItem('myCart', "");
+      location.reload();
+
+    }
+
     //FUNCION SUBTOTAL
 
     function subtotal(productId,productCost){
@@ -55,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //CREATE HEADER
 
         function showListHead(){
+
           var elementHTML= `
               <div class="list-group-item" style="max-width:1200px; margin:auto;">
               <div class="row">
@@ -119,6 +128,12 @@ document.addEventListener("DOMContentLoaded", function() {
               </div>
               `
           }
+
+          //ADD delete options
+
+          listaDesplegable += `
+
+          <a style="float:right;margin:10px" href="#" onclick="clearCart()">${trashIcon} Vaciar mi carrito</a>`
           document.getElementById("listacompras").innerHTML += listaDesplegable;
         }
 
