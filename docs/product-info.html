@@ -110,12 +110,7 @@
               <textarea class="form-control" id="myComment" name="comment" placeholder="Escribe tu comentario aquí." rows="4" cols="20" required></textarea>   
               <br>
               <button onclick="addComment()" class="btn btn-primary">Enviar</button>
-          </div>
-
-          <!-- ALERT SUCCESS-->   
-          <div class="alert alert-success position-fixed" style="display:none;" role="alert" id="alert-success">
-            <p>¡Gracias por su comentario!</p>
-          </div>          
+          </div>       
 
     </div>
   </main>
@@ -129,6 +124,13 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+
+  <!-- Alert success -->
+  <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+    <p id="alert-message">...</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

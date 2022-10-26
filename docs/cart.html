@@ -49,7 +49,44 @@
       <br><h2 class="text-center">Mi carrito</h2>
       <br><h4 class="text-center">Articulos a comprar</h4><br>
       <div id="listacompras"></div><br><br>
-      <div id="shippingControls"></div>
+
+      <!--<div id="shippingControls"></div><br>-->
+
+      <div id="shippingControls">
+        <form id="shippingForm" class="needs-validation" style="max-width:1200px; margin:auto;" novalidate>
+          <h4>Tipo de envío</h4>
+          <div class="col-8 ml-auto gx-1"">
+            <select class="form-select" id="floatingSelect" aria-label="Select your shipping class" onchange="totalDeTotales()" required>
+              <option selected value="0.05">Standard - 12 a 15 días (5%)</option>
+              <option value="0.07">Express -5 a 8 días (7%) </option>
+              <option value="0.15">Premium - 2 a 5 días (15%)</option>
+            </select>
+            <label for="floatingSelect">Elige tu tipo de envío</label>
+          </div><br>
+          <h4>Dirección de envío</h4>
+          
+          <div class="row p-1">
+              <div class="col-5 gx-1">
+                <label for="streetInput">Calle</label>
+                <input type="text" id="streetInput" class="form-control col-8" name="calle" placeholder="Calle" required>
+                <div class="invalid-feedback">Debe ingresar nombre de calle</div>
+              </div>
+              <div class="col-3 gx-1">
+                <label for="numberInput">N°</label>
+                <input type="number" id="numberInput" class="form-control col-8" name="numero" placeholder="N°" required>
+                <div class="invalid-feedback">Debe ingresar numero de puerta</div>
+              </div>
+              <div class="col-4 gx-1">  
+                <label for="cornerInput">esquina</label> 
+                <input type="text" id="cornerInput" class="form-control col-8" name="esquina" placeholder="esquina" required>
+                <div class="invalid-feedback">Debe ingresar esquina</div>
+              </div>
+          </div>
+        </form>
+      </div>
+
+      <div id="bill"></div>
+      <div id="payingMethod"></div>
 
     </div>
   </main>
@@ -71,6 +108,72 @@
       <div></div>
     </div>
   </div>
+  <!-- Alert success -->
+  <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+    <p>Su compra se ha realizado exitosamente</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <!-- MODAL Forma de pago -->
+    <div class="modal fade" id="payingWindow" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                  <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Forma de pago</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <form id="payingMethodForm" class="modal-body needs-validation" action="#" method="get" novalidate>
+                              <!--OPCION Tarjeta de credito -->
+                              <input id="credit-method" type="radio" name="paying-method" value="credit-card" onchange="enablePayingOptions('credit')" required><label> Tarjeta de crédito</label>
+                              
+
+                              <div class="row p-1">
+                                      <!--Inputs para Tarjeta de credito -->
+                                      <div class="col-7 gx-2">
+                                        <label for="cardNumber"><small>Numero de tarjeta</small></label>
+                                        <input disabled type="number" maxlength="16" id="cardNumber" class="form-control col-8" name="cardNumber" placeholder="Numero de tarjeta">
+                                        <div class="invalid-feedback">Debe ingresar numero de tarjeta</div>
+                                      </div>
+
+                                      <div class="col-5 gx-2">
+                                        <label for="safeCode"><small>Código de seguridad (CVV)</small></label>
+                                        <input disabled type="number" maxlength="3" id="safeCode" class="form-control col-8" name="safeCode" placeholder="CVV">
+                                        <div class="invalid-feedback">Debe ingresar el codigo de seguridad</div>          
+                                      </div>
+
+                                      <div class="col-5 gx-1 gy-2">  
+                                        <label for="expDate"><small>Fecha de vencimiento de la tarjeta (MM/AA)</small></label>
+                                        <input disabled type="text" maxlength="4" id="expDate" class="form-control col-8" name="expirationDate" placeholder="(MM/AA)">
+                                        <div class="invalid-feedback">Debe ingresar la fecha de vencimiento</div> 
+                                        <br>
+                                      </div>
+                              
+                                  <hr>
+                              </div>
+                              <!--OPCION Transferencia bancaria -->
+                              <input id="bank-method" type="radio" name="paying-method" value="bankTransfer" onchange="enablePayingOptions('bank')" required> <label> Transferencia bancaria</label>
+
+                              <div class="row p-1">
+                                      <!--Inputs para Tarjeta de credito -->
+                                      <div class="col-5 m-1 gx-1">
+                                        <label for="accountNumber"><small>Número de cuenta</small></label>
+                                        <input disabled type="number" maxlength="16" id="accountNumber" class="form-control col-8" name="account" placeholder="Número de cuenta">
+                                        <div class="invalid-feedback">Debe ingresar una cuenta bancaria valida</div>   
+                                      </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button class="btn btn-primary" data-bs-dismiss="modal" onclick="checkPayingMethod()">Añadir método de pago</button>
+                              </div>
+                        </form>
+
+
+                  </div>
+            </div>
+      </div>
+
+  <!---->
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>

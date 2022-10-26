@@ -45,14 +45,14 @@ function addSlideIMG(images){
 return elementHTML;
 }
 
-// Show alert sucess function
-function showAlertSucess() {
-  document.getElementById("alert-success").style.display = "block";
-
-  setTimeout(function() { 
-    document.getElementById("alert-success").style.display = "none"; 
-    }, 5000);
-}
+  // Muestra mensaje de exito
+  function showAlertSuccess(mensaje) {
+    document.getElementById("alert-message").innerHTML = mensaje;
+    document.getElementById("alert-success").classList.add("show");
+    setTimeout(() => {
+      document.getElementById("alert-success").classList.remove("show")
+    }, "5000")
+  }
 
 //Add Stars FUNCTION
 function addStars(score){
@@ -151,9 +151,7 @@ function loadRelatedProducts(relProd){
                     <img class="img_gallery" style="width:200px" src="${relProd[i].image}">
                     <p>${relProd[i].name} </p>
                   </a>
-                
             </div>
-
         </div>`
   }
 
@@ -213,7 +211,7 @@ function addComment(){
   document.getElementById("myComment").value = "";
   document.getElementById("rate").value = "1";
 
-  showAlertSucess() 
+  showAlertSuccess(messageIcon +" ¡Gracias por su comentario!"); 
 }
 
 
@@ -236,30 +234,30 @@ function addComment(){
       if (loadLocalStorageCart()[i].id == product.id){
         //tengo que ver como hacer para que en este caso, agregue 1 al 'count' del producto
         alreadyInCart = true;
-        console.log("Already in cart!! wont add it");
+
+        showAlertSuccess(alertIcon + " El producto ya está en su carrito"); 
       }
     }
   }
     else{
-      console.log("There is no cart, lets create it");
       let productObject={id: product.id , name: product.name, unitCost: product.cost, count: 1 , currency: product.currency, image: product.images[0]};
       cartList = []
       cartList = cartList.concat(productObject);
       localStorage.setItem('myCart', JSON.stringify(cartList));
       alreadyInCart = true;
 
+      showAlertSuccess(cartIcon + " Se ha sido añadido el producto a su carrito"); 
+
     }
 
     if (alreadyInCart==false){
-      console.log("The product is not in the cart, lets add it");
 
       let productObject={id: product.id , name: product.name, unitCost: product.cost, count: 1 , currency: product.currency, image: product.images[0]};
-
       cartList = loadLocalStorageCart();
-
       cartList = cartList.concat(productObject);
-    
       localStorage.setItem('myCart', JSON.stringify(cartList));
+
+      showAlertSuccess(cartIcon + " Se ha sido añadido el producto a su carrito"); 
     }
 
 }
