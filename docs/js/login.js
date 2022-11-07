@@ -24,6 +24,7 @@ document.getElementById("ok").addEventListener("click", function() {
         //SAVES user in Local Storage > then loads index 
         localStorage.setItem("user", email.substring(0,email.indexOf('@')));
         localStorage.setItem("profilePic", 'https://dfge.de/wp-content/uploads/blank-profile-picture-973460_640.png');
+        localStorage.setItem("email", email);
         window.location = "index.html";
   }else{
     //location.reload();
@@ -46,6 +47,7 @@ function handleCredentialResponse(response) {
 
   localStorage.setItem("user", responsePayload.email.substring(0,responsePayload.email.indexOf('@')));
   localStorage.setItem("profilePic", responsePayload.picture);
+  localStorage.setItem("email", responsePayload.email);
   window.open("index.html", "_self");
 }
 

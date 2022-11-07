@@ -51,10 +51,36 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div class="container"  style="max-width: 1000px; margin:auto">
+
+      <!-- FORM-->
+      <br>
+      <div class=""></div>
+      <h4>Mi perfil</h4>
+      <img class="img-thumbnail" id="profilePic" src="" style="width: 150px;">
+      <hr class="my-4">
+      <form class="needs-validation" action="#" method="get" class="row mt-4" id="formulario" novalidate>
+
+        <div class="row g-3">
+
+            <div class="col-sm-6"><label for="firstName" class="form-label">Primer nombre*</label><input id="firstName" class="form-control" type="text" placeholder="Escriba su primer nombre" required><p class ="invalid-feedback">Debe ingresar un nombre</p></div>
+            <div class="col-sm-6"><label for="secondName" class="form-label">Segundo nombre</label><input id="secondName" class="form-control" type="text" placeholder="Escriba su segundo nombre"></div>
+            
+            <div class="col-sm-6"><label for="firstLastName" class="form-label">Primer apellido*</label><input id="firstLastName" class="form-control" type="text" placeholder="Escriba su primer apellido" required><p class ="invalid-feedback">Debe ingresar un apellido</p></div>
+            <div class="col-sm-6"><label for="secondLastName" class="form-label">Segundo apellido</label><input id="secondLastName" class="form-control" type="text" placeholder="Escriba su segundo apellido"></div>
+            
+            <div class="col-sm-6"><label for="email" class="form-label">E-mail*</label><input id="email" class="form-control" type="email" placeholder="Escriba su correo electrónico" required><p class ="invalid-feedback">El correo no es válido</p></div>
+            <div class="col-sm-6"><label for="uploadIMG" class="form-label">Imágen de perfil</label><input id="uploadIMG" class="form-control" type="file" onchange="readURL(this)"></div>
+
+            <div class="col-sm-6"><label for="contactNumber" class="form-label">Teléfono de contacto</label><input id="contactNumber" class="form-control" type="number" placeholder="Escriba su numero de contacto" minlength="8"></div>
+
+        </div>
+       
+      
+      <hr class="my-4">
+      <button  type="submit" class="btn btn-primary" onclick="saveChanges()">Guardar cambios</button>
+      </form>
+
     </div>
   </main>
   <footer class="text-muted">
@@ -67,6 +93,13 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+
+  <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+    <p>Datos guardados correctamente</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>

@@ -31,8 +31,9 @@
       let element=document.getElementById("product-"+productId);
       element.parentNode.removeChild(element);
 
-      totalDeTotales();
+      totalDeTotales(); //actualiza el total de la compra
 
+      //Chequea si al borrar el producto queda algo en el carrito. Si no hay nada, deshabilita el botón de comprar
       if(document.getElementById("total").innerHTML==="0"){
         document.getElementById("purchaseBtn").disabled = true;
         document.getElementById("purchaseBtn").classList.add("btn-secondary");
@@ -76,21 +77,37 @@
       document.getElementById("total").innerHTML= total; //actualizo  el HTML con el total
     }
 
-    // Enable paying method options
+    // ENABLE paying method options
     function enablePayingOptions(metodo){
       if(metodo==="credit"){
-        document.getElementById("cardNumber").disabled = false; document.getElementById("cardNumber").required = true;
-        document.getElementById("safeCode").disabled = false; document.getElementById("safeCode").required = true;
-        document.getElementById("expDate").disabled = false; document.getElementById("expDate").required = true;
 
-        document.getElementById("accountNumber").disabled = true; document.getElementById("accountNumber").required = false;
+        // Habilita opciones de pago por tarjeta de credito
+        document.getElementById("cardNumber").disabled = false;   
+        document.getElementById("cardNumber").required = true;
+
+        document.getElementById("safeCode").disabled = false; 
+        document.getElementById("safeCode").required = true;
+
+        document.getElementById("expDate").disabled = false; 
+        document.getElementById("expDate").required = true;
+
+        // Deshabilita opciones de pago por transferencia
+        document.getElementById("accountNumber").disabled = true; 
+        document.getElementById("accountNumber").required = false;
 
       } else if(metodo==="bank"){           
-        document.getElementById("cardNumber").disabled = true; document.getElementById("cardNumber").required = false;
-        document.getElementById("safeCode").disabled = true; document.getElementById("safeCode").required = false;
-        document.getElementById("expDate").disabled = true; document.getElementById("expDate").required = false;
         
-        document.getElementById("accountNumber").disabled = false; document.getElementById("accountNumber").required = true;
+        // Deshabilita opciones de pago por tarjeta de credito
+        document.getElementById("cardNumber").disabled = true; 
+        document.getElementById("cardNumber").required = false;
+        document.getElementById("safeCode").disabled = true; 
+        document.getElementById("safeCode").required = false;
+        document.getElementById("expDate").disabled = true; 
+        document.getElementById("expDate").required = false;
+
+        // Habilita opciones de pago por transferencia
+        document.getElementById("accountNumber").disabled = false; 
+        document.getElementById("accountNumber").required = true;
       }
     }
 
@@ -105,7 +122,7 @@
               if (document.getElementById("bank-method").checked){
                 payingMethod ="Transferencia bancaria";
                 element.style.color= "green";
-                payMethodIsChecked = true
+                payMethodIsChecked = true;
 
               }else if(document.getElementById("credit-method").checked){
                 payingMethod ="Tarjeta de crédito"; 
@@ -202,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     totalDeTotales();
 
-    addPayingMethod()
+    addPayingMethod();
   })
 })
 

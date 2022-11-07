@@ -132,3 +132,9 @@ function loadLocalStorageCart(){
   return array;
 }
 
+
+
+/* -- Resetear algunos valores---  */
+
+//Resetea el valor de "newImage" del perfil de usuario si se cargo una imagen y no se guardaron los cambios
+localStorage.setItem("newImage",""); 
